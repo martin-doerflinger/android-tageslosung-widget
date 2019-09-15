@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Tageslosung</string>
+    <string name="refresh">Aktualisieren</string>
+    <string name="add_widget">Widget hinzufügen</string>
+    <string name="share">Teilen</string>
+    <string name="shareWebsite">Webseite teilen über...</string>
+    <string name="shareLosungLehrtext">Tageslosung teilen über...</string>
+    <string name="not_updated">Daten wurden noch nicht aktualisiert</string>
+    <string name="updated">Daten aktualisiert</string>
+    <string name="widgetUpdated">Widget Tageslosung aktualisiert</string>
+    <string name="service_started">Tageslosung Downloader gestartet</string>
+    <string name="service_stopped">Tageslosung Downloader beendet</string>
+    <string name="about">Über</string>
+    <string name="already_updated">Daten bereits aktuell</string>
+</resources>

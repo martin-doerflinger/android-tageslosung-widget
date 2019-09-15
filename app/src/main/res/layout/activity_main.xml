@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="family.doerflinger.martin.losungen.view.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/time"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLosung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_updated"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:id="@+id/tvLosungVers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/vers"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/tvLehrtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:id="@+id/tvLehrtextVers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/vers"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="@string/refresh"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
