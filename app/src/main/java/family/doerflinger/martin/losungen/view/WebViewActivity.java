@@ -3,17 +3,16 @@ package family.doerflinger.martin.losungen.view;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import family.doerflinger.martin.losungen.R;
 
 public class WebViewActivity extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class WebViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
         WebView webview = (WebView) findViewById(R.id.webview);
-        webview.setWebViewClient(new WebViewClient(){
+        webview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
@@ -42,7 +41,7 @@ public class WebViewActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_home:
                 finish();
@@ -51,7 +50,7 @@ public class WebViewActivity extends AppCompatActivity {
                 Intent i = new Intent(android.content.Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(android.content.Intent.EXTRA_TEXT, url);
-                startActivity(Intent.createChooser(i,getString(R.string.shareWebsite)));
+                startActivity(Intent.createChooser(i, getString(R.string.shareWebsite)));
                 break;
             case R.id.action_about:
                 final Dialog dialog = new Dialog(this);

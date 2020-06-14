@@ -4,17 +4,13 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.widget.RemoteViews;
 
 import java.util.Calendar;
 
-import family.doerflinger.martin.losungen.R;
 import family.doerflinger.martin.losungen.services.UpdaterService;
 
 public class MainWidgetProvider extends AppWidgetProvider {
@@ -41,13 +37,26 @@ public class MainWidgetProvider extends AppWidgetProvider {
         context.startService(intent);
     }
 
-    public void onDeleted(Context context, int[] appWidgetIds) { super.onDeleted(context, appWidgetIds); }
-    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) { super.onRestored(context, oldWidgetIds, newWidgetIds); }
-    public void onReceive(Context context, Intent intent) { super.onReceive(context, intent); }
-    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) { super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions); }
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        super.onDeleted(context, appWidgetIds);
+    }
+
+    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
+        super.onRestored(context, oldWidgetIds, newWidgetIds);
+    }
+
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+    }
+
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+    }
+
     public void onEnabled(Context context) {
         super.onEnabled(context);
     }
+
     public void onDisabled(Context context) {
         super.onDisabled(context);
     }

@@ -2,16 +2,11 @@ package family.doerflinger.martin.losungen.view;
 
 import android.app.Dialog;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +20,8 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import family.doerflinger.martin.losungen.R;
 import family.doerflinger.martin.losungen.utils.AbstractDownloaderTask;
 import family.doerflinger.martin.losungen.widget.MainWidgetProvider;
@@ -40,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         data = new String[5];
-        for(int i=0;i<data.length;i++)
+        for (int i = 0; i < data.length; i++)
             data[i] = "";
         btnRefresh = (Button) findViewById(R.id.btnRefresh);
         tvDate = (TextView) findViewById(R.id.tvDate);
@@ -59,16 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onCreateOptionsMenu(menu);
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 btnRefresh.performClick();
                 break;
             case R.id.action_share_losung:
-                if(!data[0].isEmpty() && !data[1].isEmpty() && !data[2].isEmpty() && !data[3].isEmpty() && !data[4].isEmpty()) {
+                if (!data[0].isEmpty() && !data[1].isEmpty() && !data[2].isEmpty() && !data[3].isEmpty() && !data[4].isEmpty()) {
                     Intent i = new Intent(android.content.Intent.ACTION_SEND);
                     i.setType("text/plain").putExtra(android.content.Intent.EXTRA_TEXT, data[1] + " - " + data[2] + "\n" + data[3] + " - " + data[4]);
-                    startActivity(Intent.createChooser(i,getString(R.string.shareLosungLehrtext)));
+                    startActivity(Intent.createChooser(i, getString(R.string.shareLosungLehrtext)));
                 }
                 break;
             case R.id.action_about:
@@ -92,13 +89,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnRefresh:
                 DownloaderTask dTask = new DownloaderTask();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd. MMMM yyyy");
                 Date currentDate = new Date();
 
-                if(data[0].isEmpty() || !data[0].equals(dateFormat.format(currentDate))) { //load data because haven't been downloaded yet
+                if (data[0].isEmpty() || !data[0].equals(dateFormat.format(currentDate))) { //load data because haven't been downloaded yet
                     dTask.execute();
                 } else {
                     Toast.makeText(this.getBaseContext(), R.string.already_updated, Toast.LENGTH_SHORT).show();
@@ -108,9 +105,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tvLehrtextVers:
                 try {
                     Intent webview = new Intent(MainActivity.this, WebViewActivity.class);
-                    webview.putExtra("url", "https://www.bibleserver.com/text/LUT/" + URLEncoder.encode(((TextView)v).getText().toString(), "UTF-8")); //Optional parameters
+                    webview.putExtra("url", "https://www.bibleserver.com/text/LUT/" + URLEncoder.encode(((TextView) v).getText().toString().replaceAll(" ", ""), "UTF-8")); //Optional parameters
                     startActivity(webview);
-                } catch (UnsupportedEncodingException e) { }
+                } catch (UnsupportedEncodingException e) {
+                }
                 break;
             default:
                 break;
@@ -119,14 +117,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private class DownloaderTask extends AbstractDownloaderTask {
         public void onPostExecute(String[] result) {
-            if(result != null  && (!result[0].equals("null") || !result[1].equals("null") || !result[2].equals("null") || !result[3].equals("null") || !result[4].equals("null"))) {
+            if (result != null && (!result[0].equals("null") || !result[1].equals("null") || !result[2].equals("null") || !result[3].equals("null") || !result[4].equals("null"))) {
                 //Update app
                 tvDate.setText(result[0]);
                 tvLosung.setText(result[1]);
                 tvLosungVers.setText(result[2]);
                 tvLehrtext.setText(result[3]);
                 tvLehrtextVers.setText(result[4]);
-                for(int i=0; i<5; i++)
+                for (int i = 0; i < 5; i++)
                     data[i] = new String(result[i]); //real copy; not a reference
 
                 //Update widget

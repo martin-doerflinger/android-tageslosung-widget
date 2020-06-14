@@ -10,12 +10,12 @@ import android.os.Build;
 import java.util.Calendar;
 
 /*
-* After every reboot or boot of the device, the AlarmManager doesn't have any updating events anymore.
-* This means, it is not enough to start the UpdaterService every time when a widget gets added to the
-* homescreen. You also want to start the UpdaterService after every Intent that the boot/reboot
-* has been completed. To add this functionality, you can use this class. Don't forget to set the
-* right permissions in your manifest-File :) Happy updating :)
-*/
+ * After every reboot or boot of the device, the AlarmManager doesn't have any updating events anymore.
+ * This means, it is not enough to start the UpdaterService every time when a widget gets added to the
+ * homescreen. You also want to start the UpdaterService after every Intent that the boot/reboot
+ * has been completed. To add this functionality, you can use this class. Don't forget to set the
+ * right permissions in your manifest-File :) Happy updating :)
+ */
 public class AutostartService extends BroadcastReceiver {
     private AlarmManager manager;
     private Intent intent;
